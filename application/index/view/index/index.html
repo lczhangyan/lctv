@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lctv/layui/css/layui.css"  media="all">
+    <style>
+        body{
+            background: #F2F6F9;
+            font-family:"Microsoft YaHei"
+        }
+    </style>
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header" style="box-shadow: 0px 2px 10px #999;">
+        <div class="layui-logo"><img src="/lctv/img/logo.png" style="width: 80%;"></div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;" style="color: #fff;">
+                    <img src="/lctv/img/timg.jpg" class="layui-nav-img">
+                    {$name}
+                </a>
+            </li>
+            <li class="layui-nav-item"><a href="/index/login/logout" style="color: #fff;">注销</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black" style="background: #fff !important;box-shadow: 0px 0px 10px #999;;margin-top: 8px;left: 4px;
+    bottom: 10px;">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test" lay-shrink="all" style="background: #fff;text-align: center;">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;" style="text-align: left;
+    border-bottom: 2px solid #d2d2d2;
+    text-indent: 22px;">数据周报</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/index/report/rating_w_z" target="iframe">一周收视变动Z</a></dd>
+                        <dd><a href="/index/report/rating_w" target="iframe">一周收视变动</a></dd>
+                        <dd><a href="/index/report/channel_group_w" target="iframe">各频道组市场份额</a></dd>
+                        <dd><a href="/index/report/all_rating_w" target="iframe">频道收视率排名</a></dd>
+                        <dd><a href="/index/report/five_minute_z" target="iframe">每5分钟收视率统计Z</a></dd>
+                        <dd><a href="/index/report/top10_z" target="iframe">top10节目排行z</a></dd>
+                        <dd><a href="/index/report/top10" target="iframe">top10节目排行</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;" style="text-align: left;
+    border-bottom: 2px solid #d2d2d2;
+    text-indent: 22px;">数据月报</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/index/report/channel_group_m" target="iframe">各频道组市场份额</a></dd>
+                        <dd><a href="/index/report/all_rating_m" target="iframe">频道收视率排名</a></dd>
+                        <dd><a href="/index/report/shandong_all_channel" target="iframe">省市主要频道变动</a></dd>
+                        <dd><a href="/index/report/five_minute_z_m" target="iframe">每5分钟收视率统计Z</a></dd>
+                        <dd><a href="/index/report/night_program" target="iframe">晚间节目收视率排名</a></dd>
+                        <dd><a href="/index/report/my_program" target="iframe">节目排名</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item" lay-shrink>
+                    <a href="javascript:;" style="text-align: left;
+    border-bottom: 2px solid #d2d2d2;
+    text-indent: 22px;">资料管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">密码修改</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" style="background: #fff !important;box-shadow: 0px 0px 10px #999;left: 219px;top: 69px;right:6px;overflow: hidden;bottom: 10px;">
+        <iframe style="width: 100%;height: 100%;border: 0px" name="iframe" src=""></iframe>
+    </div>
+
+    <!--<div class="layui-footer">山东有线技术支持</div>-->
+</div>
+<script src="/lctv/layui/layui.js" charset="utf-8"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+        var $ = layui.$;
+
+    });
+</script>
+
+</body>
+</html>

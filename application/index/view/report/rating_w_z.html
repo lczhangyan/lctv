@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>一周收视变动</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lctv/layui/css/layui.css"  media="all">
+    <style>
+        *{
+            box-sizing:border-box;
+        }
+        body{
+            padding: 20px;
+        }
+        .info span{
+            margin-left: 15px;
+        }
+        table th{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 5px;">
+    <legend>一周收视变动</legend>
+</fieldset>
+<div class="info">
+    <span>时间：2017.10.16-2017.10.22</span>
+    <span>目标观众：4岁以上 </span>
+    <span>单位：收视率%</span>
+    <span>白天收视率时段为06：00-18：00</span>
+    <span>夜间收视率时段为18：00-24：00</span>
+</div>
+<div class="layui-row">
+    <div class="layui-col-xs5">
+        <div id="table" style="text-align: center;"></div>
+    </div>
+    <div class="layui-col-xs7">
+        <div id="map" style="height: 400px;"></div>
+    </div>
+</div>
+
+<script src="/lctv/layui/layui.js" charset="utf-8"></script>
+<script src="/lctv/layui/template-native.js" charset="utf-8"></script>
+<script type="text/javascript" src="/lctv/echarts/echarts.js"></script>
+<script>
+    var data1={
+        "zonghe":{
+            list:[
+                {
+                    date:"2018-01-02",
+                    rating:"0.05"
+                },{
+                    date:"2018-01-03",
+                    rating:"0.02"
+                },{
+                    date:"2018-01-04",
+                    rating:"0.03"
+                },{
+                    date:"2018-01-05",
+                    rating:"0.02"
+                },{
+                    date:"2018-01-06",
+                    rating:"0.00"
+                },{
+                    date:"2018-01-07",
+                    rating:"0.01"
+                },{
+                    date:"2018-01-08",
+                    rating:"0.03"
+                }
+            ],
+            mean:0.02,
+            lastMean:0.00
+        },
+        "gonggong":{
+            list:[
+                {
+                    date:"2018-01-02",
+                    rating:"0.47"
+                },{
+                    date:"2018-01-03",
+                    rating:"0.71"
+                },{
+                    date:"2018-01-04",
+                    rating:"0.71"
+                },{
+                    date:"2018-01-05",
+                    rating:"0.58"
+                },{
+                    date:"2018-01-06",
+                    rating:"0.59"
+                },{
+                    date:"2018-01-07",
+                    rating:"0.59"
+                },{
+                    date:"2018-01-08",
+                    rating:"0.91"
+                }
+            ],
+            mean:0.65,
+            lastMean:0.56
+        },
+        "tuwen":{
+            list:[
+                {
+                    date:"2018-01-02",
+                    rating:"0.47"
+                },{
+                    date:"2018-01-03",
+                    rating:"0.71"
+                },{
+                    date:"2018-01-04",
+                    rating:"0.71"
+                },{
+                    date:"2018-01-05",
+                    rating:"0.58"
+                },{
+                    date:"2018-01-06",
+                    rating:"0.59"
+                },{
+                    date:"2018-01-07",
+                    rating:"0.59"
+                },{
+                    date:"2018-01-08",
+                    rating:"0.91"
+                }
+            ],
+            mean:0.65,
+            lastMean:0.56
+        },
+        "daoshi":{
+            list:[
+                {
+                    date:"2018-01-02",
+                    rating:"0.47"
+                },{
+                    date:"2018-01-03",
+                    rating:"0.71"
+                },{
+                    date:"2018-01-04",
+                    rating:"0.71"
+                },{
+                    date:"2018-01-05",
+                    rating:"0.58"
+                },{
+                    date:"2018-01-06",
+                    rating:"0.59"
+                },{
+                    date:"2018-01-07",
+                    rating:"0.59"
+                },{
+                    date:"2018-01-08",
+                    rating:"0.91"
+                }
+            ],
+            mean:0.65,
+            lastMean:0.56
+        }
+
+    }
+    layui.use('jquery', function(){
+        var $ = layui.jquery;
+        var html = template('tabletpl', data1);
+        $("#table").html(html);
+    });
+    var myChart = echarts.init(document.getElementById('map'),'macarons');
+    option = {
+        color:["#4966e8","#ffc468","#ff6868","#43D060"],
+        title : {
+            text: '各频道一周收视变动',
+            subtext: '',
+            x:'center',
+            show:'true',
+            textStyle:{
+                textAlign:"center"
+            }
+        },
+        legend: {
+            data:['聊城综合','聊城公共','聊城图文','聊城导视'],
+            y:'bottom'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        axis:{
+        },
+        xAxis : [
+            {
+                type: 'category',
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                axisLabel: {
+                    interval: 0
+                }
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'聊城综合',
+                type:'bar',
+                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+         //       barWidth : 35, //柱形宽度
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name:'聊城公共',
+                type:'bar',
+                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+              //  barWidth : 35, //柱形宽度
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name:'聊城图文',
+                type:'bar',
+                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+                //  barWidth : 35, //柱形宽度
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name:'聊城导视',
+                type:'bar',
+                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+                //  barWidth : 35, //柱形宽度
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            }
+        ]
+    };
+    var temXarr=[];
+    var temArr=[];
+    var temArr1=[];
+    var temArr2=[];
+    var temArr3=[];
+    for(i=0;i<data1.zonghe.list.length;i++){
+        temXarr[i]=data1.zonghe.list[i].date;
+        temArr[i]=data1.zonghe.list[i].rating;
+        temArr1[i]=data1.gonggong.list[i].rating;
+        temArr2[i]=data1.tuwen.list[i].rating;
+        temArr3[i]=data1.daoshi.list[i].rating;
+    }
+    option.xAxis[0].data=temXarr;
+    option.series[0].data=temArr;
+    option.series[1].data=temArr1;
+    option.series[2].data=temArr2;
+    option.series[3].data=temArr3;
+    myChart.setOption(option);
+</script>
+<script id="tabletpl" type="text/html">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>日期</th>
+            <th>聊城综合</th>
+            <th>聊城公共</th>
+            <th>聊城图文</th>
+            <th>聊城导视</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for(i=0;i<7;i++){%>
+        <tr>
+            <td><%=zonghe.list[i].date%></td>
+            <td><%=zonghe.list[i].rating%></td>
+            <td><%=gonggong.list[i].rating%></td>
+            <td><%=tuwen.list[i].rating%></td>
+            <td><%=daoshi.list[i].rating%></td>
+        </tr>
+        <%}%>
+        <tr>
+            <td>本周平均</td>
+            <td><%=zonghe.mean%></td>
+            <td><%=gonggong.mean%></td>
+            <td><%=tuwen.mean%></td>
+            <td><%=daoshi.mean%></td>
+        </tr>
+        <tr>
+            <td>上周平均</td>
+            <td><%=zonghe.lastMean%></td>
+            <td><%=gonggong.lastMean%></td>
+            <td><%=tuwen.lastMean%></td>
+            <td><%=daoshi.lastMean%></td>
+        </tr>
+        <tr>
+            <td>与上周变化</td>
+            <td><%=(zonghe.mean-zonghe.lastMean).toFixed(2)%></td>
+            <td><%=(gonggong.mean-gonggong.lastMean).toFixed(2)%></td>
+            <td><%=(tuwen.mean-tuwen.lastMean).toFixed(2)%></td>
+            <td><%=(daoshi.mean-daoshi.lastMean).toFixed(2)%></td>
+        </tr>
+        </tbody>
+    </table>
+</script>
+</body>
+</html>

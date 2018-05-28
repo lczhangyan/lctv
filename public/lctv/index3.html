@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加专题</title>
+</head>
+<link href="layui/css/layui.css" rel="stylesheet" type="text/css"/>
+<style>
+    .layui-table th{
+        text-align: center;
+    }
+</style>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script>
+    var data={
+        "code":0,
+        "list": [{
+            "program":"聊城新闻",
+            "epg":"12：00",
+            "audience":"1.98",
+            "occupancy":"6.73%"
+        },{
+            "program":"聊城新闻",
+            "epg":"12：00",
+            "audience":"1.98",
+            "occupancy":"6.73%"
+        },{
+            "program":"聊城新闻",
+            "epg":"12：00",
+            "audience":"1.98",
+            "occupancy":"6.73%"
+        },{
+            "program":"聊城新闻",
+            "epg":"12：00",
+            "audience":"1.98",
+            "occupancy":"6.73%"
+        },{
+            "program":"聊城新闻",
+            "epg":"12：00",
+            "audience":"1.98",
+            "occupancy":"6.73%"
+        },{
+            "program":"聊城新闻",
+            "epg":"12：00",
+            "audience":"1.98",
+            "occupancy":"6.73%"
+        },{
+            "program":"聊城新闻",
+            "epg":"12：00",
+            "audience":"1.98",
+            "occupancy":"6.73%"
+        },{
+            "program":"聊城新闻",
+            "epg":"12：00",
+            "audience":"1.98",
+            "occupancy":"6.73%"
+        },{
+            "program":"聊城新闻",
+            "epg":"12：00",
+            "audience":"1.98",
+            "occupancy":"6.73%"
+        }]
+    }
+</script>
+<body>
+<div id="view"></div>
+<script id="demo" type="text/html">
+    <table class="layui-table" style="text-align: center">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col width="200">
+        </colgroup>
+        <thead>
+        <tr style="text-align: center">
+            <th>节目名称</th>
+            <th>播出时间</th>
+            <th>收视率</th>
+            <th>占有率</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#  layui.each(d.list, function(index, item){ }}
+        <tr>
+            <td>{{ item.program }}</td>
+            <td>{{ item.epg }}：</td>
+            <td>{{ item.audience || '' }}</td>
+            <td>{{ item.occupancy || '' }}</td>
+        </tr>
+        {{#  }); }}
+        </tbody>
+    </table>
+</script>
+<script>
+    layui.use('laytpl', function(){
+        var laytpl = layui.laytpl;
+        var getTpl = demo.innerHTML
+            ,view = document.getElementById('view');
+        laytpl(getTpl).render(data, function(html){
+            view.innerHTML = html;
+        })
+    });
+</script>
+</body>
+</html>

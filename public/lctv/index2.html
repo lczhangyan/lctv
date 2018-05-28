@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>添加专题</title>
+</head>
+<link href="" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="echarts/echarts.js"></script>
+<script type="text/javascript" src="echarts/macarons.js"></script>
+<body>
+<div id="main" style="width: 800px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'), 'macarons');
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+      //  tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: ["12:05","12:10","12:15","12:20","12:25","12:30","12:35","12:40","12:45","12:50","12:55","13:00","13:05","13:10","13:15","13:20","13:25","13:30","13:35","13:20","13:25","13:30","13:35"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'line',
+            data: [0.55, 1, 0.8, 1.6, 1.1, 0.4,0.55, 1, 0.8, 1.6, 1.1, 0.4,0.55, 1, 0.8, 1.6, 1.1, 0.4, 1, 0.8, 1.6, 1.1, 0.4]
+        },{
+            name: '销量1',
+            type: 'line',
+            data: [1, 1.2, 1.1, 0.4, 0.8, 1.5,1, 1.2, 1.1, 0.4, 0.8, 1.5,1, 1.2, 1.1, 0.4, 0.8, 1.5,1.1, 0.4, 0.8, 1.5]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>
